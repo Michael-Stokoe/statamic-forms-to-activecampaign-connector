@@ -1,0 +1,37 @@
+{
+    "name": "stokoe/forms-to-activecampaign-connector",
+    "autoload": {
+        "psr-4": {
+            "Stokoe\\FormsToActivecampaignConnector\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Stokoe\\FormsToActivecampaignConnector\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "statamic/cms": "^5.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Forms To Activecampaign Connector",
+            "description": "Forms To Activecampaign Connector addon"
+        },
+        "laravel": {
+            "providers": [
+                "Stokoe\\FormsToActivecampaignConnector\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
