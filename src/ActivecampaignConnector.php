@@ -172,9 +172,23 @@ class ActivecampaignConnector implements ConnectorInterface
             $acField = $mapping['activecampaign_field'] ?? '';
 
             if ($formField && $acField && isset($formData[$formField])) {
+                $value = $formData[$formField];
+
+                // Skip null/empty values to allow multiple conditional fields
+                // to map to the same ActiveCampaign field (first non-empty value wins)
+                if ($value === null || $value === '') {
+                    continue;
+                }
+
+                // Check if this AC field already has a value assigned
+                $existingIndex = array_search($acField, array_column($fieldValues, 'field'));
+                if ($existingIndex !== false) {
+                    continue;
+                }
+
                 $fieldValues[] = [
                     'field' => $acField,
-                    'value' => $formData[$formField],
+                    'value' => $value,
                 ];
             }
         }
